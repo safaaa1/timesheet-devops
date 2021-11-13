@@ -28,7 +28,8 @@ public class ContratServiceImpl implements IContratService {
 			l.debug("connexion à la DB Ok:");
 			//int i =1/0;
 			for (Contrat contrat : contrats) {
-				// TODO Log à ajouter pour affiher chaque user dans les logs   
+				l.debug("Contrat : "+ contrat.getSalaire());
+
 			} 
 			l.info("Out of method retrieveAllContrats with success");
 		}catch (Exception e) {
@@ -40,34 +41,39 @@ public class ContratServiceImpl implements IContratService {
 
 	@Override
 	public Contrat addContrat(Contrat u) {
-		// TODO Log à ajouter en début de la méthode 
+		l.info("In method addContrat");
 		Contrat u_saved = contratRepository.save(u); 
-		// TODO Log à ajouter à la fin de la méthode 
+		l.info("out of method addContrat");
 		return u_saved; 
 	}
 
 	@Override 
 	public Contrat updateContrat(Contrat u) { 
-		// TODO Log à ajouter en début de la méthode 
+		l.info("In method updateContrat");
 		Contrat u_saved = contratRepository.save(u); 
-		// TODO Log à ajouter à la fin de la méthode 
+		l.info("out of method updateContrat");
 		return u_saved; 
 	}
 
 	@Override
 	public void deleteContrat(String id) {
-		// TODO Log à ajouter en début de la méthode 
+		l.info("In method deleteContrat");
 		contratRepository.deleteById(Long.parseLong(id)); 
-		// TODO Log à ajouter à la fin de la méthode 
+		l.info("out of  method deleteContrat");
 	}
 
 	@Override
 	public Contrat retrieveContrat(String id) {
-		// TODO Log à ajouter en début de la méthode 
-		//User u =  userRepository.findById(Long.parseLong(id)).orElse(null);
-		Contrat u =  contratRepository.findById(Long.parseLong(id)).get(); 
-		// TODO Log à ajouter à la fin de la méthode 
-		return u; 
+		Contrat cont = null ;
+		try{
+			l.info("in  method retrieveContrat");
+			Contrat u =  contratRepository.findById(Long.parseLong(id)).get(); 
+			l.info("out of  method retrieveContrat");
+		}
+		catch(Exception e){
+			l.error("error in retrieveContrat"+ e);
+		}
+		return cont; 
 	}
 
 

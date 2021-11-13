@@ -28,7 +28,7 @@ public class UserServiceImpl implements IUserService {
 			l.debug("connexion à la DB Ok:");
 			//int i =1/0;
 			for (User user : users) {
-				// TODO Log à ajouter pour affiher chaque user dans les logs   
+				l.debug("user :" +user.getLastName());
 			} 
 			l.info("Out of method retrieveAllUsers with success");
 		}catch (Exception e) {
@@ -40,33 +40,38 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public User addUser(User u) {
-		// TODO Log à ajouter en début de la méthode 
+		l.info("in method addUser");
 		User u_saved = userRepository.save(u); 
-		// TODO Log à ajouter à la fin de la méthode 
+		l.info("out of  method addUser");
 		return u_saved; 
 	}
 
 	@Override 
 	public User updateUser(User u) { 
-		// TODO Log à ajouter en début de la méthode 
+		l.info("in method updateUser");
 		User u_saved = userRepository.save(u); 
-		// TODO Log à ajouter à la fin de la méthode 
+		l.info("out of method updateUser");
 		return u_saved; 
 	}
 
 	@Override
 	public void deleteUser(String id) {
-		// TODO Log à ajouter en début de la méthode 
+		l.info("in method deleteUser");
 		userRepository.deleteById(Long.parseLong(id)); 
-		// TODO Log à ajouter à la fin de la méthode 
+		l.info("out of method deleteUser");
 	}
 
 	@Override
 	public User retrieveUser(String id) {
-		// TODO Log à ajouter en début de la méthode 
-		//User u =  userRepository.findById(Long.parseLong(id)).orElse(null);
-		User u =  userRepository.findById(Long.parseLong(id)).get(); 
-		// TODO Log à ajouter à la fin de la méthode 
+		User u = null;
+		try {
+			l.info("in method retrieveUser");
+			 u =  userRepository.findById(Long.parseLong(id)).get(); 
+			l.info("out of method retrieveUser");	
+		}
+		catch(Exception e ){
+			l.error("error in method retrieveUser " +e);
+		}
 		return u; 
 	}
 
