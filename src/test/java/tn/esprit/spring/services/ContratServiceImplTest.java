@@ -49,12 +49,13 @@ public class ContratServiceImplTest {
 		}
 	
 	*/
+	/*
 	@Test
 	public void testDeleteContrat() {
 		us.deleteContrat("1");
 		Assertions.assertNull(us.retrieveContrat("1"));
 		}
 	
-
+*/
 }
 
